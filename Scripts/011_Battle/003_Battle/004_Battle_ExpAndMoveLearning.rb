@@ -120,9 +120,6 @@ class PokeBattle_Battle
       #       from Gen 1, i.e. Exp isn't split between all Pokémon gaining it.
       exp = a / 2
     end
-    if pbPlayer.badge_count <= 1 && pkmn.level >= 3
-      exp = 0
-    end
     return if exp <= 0
     # Pokémon gain more Exp from trainer battles
     exp = (exp * 1.5).floor if trainerBattle?
@@ -156,7 +153,10 @@ class PokeBattle_Battle
     end
     exp = i if i >= 0
     # Make sure Exp doesn't exceed the maximum
-    expFinal = growth_rate.add_exp(pkmn.exp, exp)
+    expFinal = pkmn.exp
+    if pkmn.level <= 6
+      expFinal = growth_rate.add_exp(pkmn.exp, exp)
+    end
     expGained = expFinal - pkmn.exp
     return if expGained <= 0
     # "Exp gained" message
