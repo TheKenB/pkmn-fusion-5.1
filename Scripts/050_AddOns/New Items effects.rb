@@ -338,7 +338,7 @@ ItemHandlers::UseOnPokemon.add(:INCUBATOR, proc { |item, pokemon, scene|
   end
 })
 
-ItemHandlers::UseOnPokemon.add(:MISTSTONE, proc { |item, pokemon, scene|
+ItemHandlers::UseOnPokemon.add(:THUNDERSTONE, proc { |item, pokemon, scene|
   next false if pokemon.egg?
   if pbForceEvo(pokemon)
     next true

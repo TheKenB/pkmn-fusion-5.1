@@ -152,6 +152,7 @@ class PokeBattle_Battle
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty], pkmn, exp)
     end
     exp = i if i >= 0
+    exp = exp * 2
     # Make sure Exp doesn't exceed the maximum
     expFinal = pkmn.exp
     if checkLevelLimit(pkmn)
