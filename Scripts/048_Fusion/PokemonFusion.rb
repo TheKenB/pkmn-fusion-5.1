@@ -596,21 +596,25 @@ class PokemonFusionScene
     return value1 >= value2 ? value1 : value2
   end
 
+  def uppedAverage(value1, value2)
+    return (pickHighestOfTwoValues(value1, value2) + 10) > 31 ? 31 :  (pickHighestOfTwoValues(value1, value2) + 10)
+  end
+
   def setFusionIVs(supersplicers)
     if supersplicers
-      setHighestFusionIvs()
-    else
       averageFusionIvs()
+    else
+      setHighestFusionIvs()
     end
   end
 
   def averageFusionIvs()
-    @pokemon1.iv[:HP] = calculateAverageValue(@pokemon1.iv[:HP], @pokemon2.iv[:HP])
-    @pokemon1.iv[:ATTACK] = calculateAverageValue(@pokemon1.iv[:ATTACK], @pokemon2.iv[:ATTACK])
-    @pokemon1.iv[:DEFENSE] = calculateAverageValue(@pokemon1.iv[:DEFENSE], @pokemon2.iv[:DEFENSE])
-    @pokemon1.iv[:SPECIAL_ATTACK] = calculateAverageValue(@pokemon1.iv[:SPECIAL_ATTACK], @pokemon2.iv[:SPECIAL_ATTACK])
-    @pokemon1.iv[:SPECIAL_DEFENSE] = calculateAverageValue(@pokemon1.iv[:SPECIAL_DEFENSE], @pokemon2.iv[:SPECIAL_DEFENSE])
-    @pokemon1.iv[:SPEED] = calculateAverageValue(@pokemon1.iv[:SPEED], @pokemon2.iv[:SPEED])
+    @pokemon1.iv[:HP] = uppedAverage(@pokemon1.iv[:HP], @pokemon2.iv[:HP])
+    @pokemon1.iv[:ATTACK] = uppedAverage(@pokemon1.iv[:ATTACK], @pokemon2.iv[:ATTACK])
+    @pokemon1.iv[:DEFENSE] = uppedAverage(@pokemon1.iv[:DEFENSE], @pokemon2.iv[:DEFENSE])
+    @pokemon1.iv[:SPECIAL_ATTACK] = uppedAverage(@pokemon1.iv[:SPECIAL_ATTACK], @pokemon2.iv[:SPECIAL_ATTACK])
+    @pokemon1.iv[:SPECIAL_DEFENSE] = uppedAverage(@pokemon1.iv[:SPECIAL_DEFENSE], @pokemon2.iv[:SPECIAL_DEFENSE])
+    @pokemon1.iv[:SPEED] = uppedAverage(@pokemon1.iv[:SPEED], @pokemon2.iv[:SPEED])
   end
 
   #unused. was meant for super splicers, but too broken
