@@ -154,7 +154,7 @@ class PokeBattle_Battle
     exp = i if i >= 0
     # Make sure Exp doesn't exceed the maximum
     expFinal = pkmn.exp
-    if pkmn.level <= 6
+    if checkLevelLimit(pkmn)
       expFinal = growth_rate.add_exp(pkmn.exp, exp)
     end
     expGained = expFinal - pkmn.exp
@@ -231,6 +231,45 @@ class PokeBattle_Battle
       # Learn all moves learned at this level
       moveList = pkmn.getMoveList
       moveList.each { |m| pbLearnMove(idxParty, m[1]) if m[0] == curLevel }
+    end
+  end
+
+  #============================================================================
+  # Nuzlocke XP Limit 
+  #============================================================================
+  def checkLevelLimit(cur_mon)
+    max_level = 100
+    case pbPlayer.badge_count
+    when 0
+      max_level = 13
+    when 1
+      max_level  = 22
+    when 2
+      max_level = 27
+    when 3
+      max_level = 36
+    when 4
+      max_level = 39
+    when 5
+      max_level = 46
+    when 6
+      max_level = 52
+    when 7
+      max_level = 65
+    when 8, 9, 10, 11
+      max_level = 59
+    when 12, 13
+      max_level = 67
+    when 14, 15
+      max_level = 70
+    when 16
+      max_level = 100
+    end
+
+    if cur_mon.level >= max_level
+      return false
+    else
+      return true
     end
   end
 
