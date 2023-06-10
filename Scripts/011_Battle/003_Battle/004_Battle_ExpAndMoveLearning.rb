@@ -240,29 +240,30 @@ class PokeBattle_Battle
   #============================================================================
   def checkLevelLimit(cur_mon)
     max_level = 100
+    level_mod = 0;
     case pbPlayer.badge_count
     when 0
-      max_level = 13
+      max_level = 12 + level_mod
     when 1
-      max_level  = 22
+      max_level  = 21 + level_mod
     when 2
-      max_level = 27
+      max_level = 26 + level_mod
     when 3
-      max_level = 36
+      max_level = 35 + level_mod
     when 4
-      max_level = 39
+      max_level = 38 + level_mod
     when 5
-      max_level = 46
+      max_level = 45 + level_mod
     when 6
-      max_level = 52
+      max_level = 51 + level_mod
     when 7
-      max_level = 65
+      max_level = 64 + level_mod
     when 8, 9, 10, 11
-      max_level = 59
+      max_level = 58 + level_mod
     when 12, 13
-      max_level = 67
+      max_level = 66 + level_mod
     when 14, 15
-      max_level = 70
+      max_level = 69 + level_mod
     when 16
       max_level = 100
     end
