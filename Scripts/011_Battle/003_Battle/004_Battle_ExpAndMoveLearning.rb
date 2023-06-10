@@ -254,9 +254,7 @@ class PokeBattle_Battle
       max_level = 46
     when 6
       max_level = 52
-    when 7
-      max_level = 65
-    when 8, 9, 10, 11
+    when 7, 8, 9, 10, 11
       max_level = 59
     when 12, 13
       max_level = 67
